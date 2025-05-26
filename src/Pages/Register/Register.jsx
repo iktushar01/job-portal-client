@@ -3,12 +3,20 @@ import Lottie from "lottie-react";
 import registerLottie from "../../assets/login.json";
 
 const Register = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = { email, password };
+    console.log(user);
+  };
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
-      <div className="max-w-5xl w-full flex flex-col-reverse lg:flex-row items-center gap-8">
+      <div className="max-w-5xl w-full flex flex-col-reverse md:flex-row items-center gap-8">
         {/* Lottie Animation */}
         <div className="w-full lg:w-1/2 flex justify-center">
-          <Lottie
+          <Lottie className="hidden md:block"
             animationData={registerLottie}
             loop={true}
             style={{ width: "100%", maxWidth: 400 }}
@@ -18,7 +26,7 @@ const Register = () => {
         {/* Form Card */}
         <div className="w-full lg:w-1/2 bg-base-100 shadow-2xl rounded-xl p-8">
           <h2 className="text-2xl font-bold mb-6 text-center">Register Now</h2>
-          <form className="space-y-4">
+          <form onSubmit={handleRegister} className="space-y-4">
             <div>
               <label className="label">
                 <span className="label-text">Email</span>
