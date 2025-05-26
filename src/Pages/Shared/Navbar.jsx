@@ -55,6 +55,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <ThemeToggle></ThemeToggle>
         <NavLink className="btn" to="register">Register</NavLink>
+        <NavLink className="btn" to="login">SignIn</NavLink>
       </div>
     </div>
   );
