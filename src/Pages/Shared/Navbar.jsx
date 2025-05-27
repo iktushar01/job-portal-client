@@ -4,20 +4,28 @@ import ThemeToggle from "./ThemeToggle";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
 
-  const {user} = useContext(AuthContext)
+  const handleSignOut = () =>{
+    signOutUser()
+    .then(()=>{
+      console.log('sign Out User')
+    })
+    .catch(error =>{
+      console.log(error)
+    })
+  }
   const links = (
     <>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
-      
     </>
   );
   return (
@@ -48,24 +56,27 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="font-bold text-xl">Career<span className="text-red-600">Code</span></a>
+        <a className="font-bold text-xl">
+          Career<span className="text-red-600">Code</span>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {links}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
         <ThemeToggle></ThemeToggle>
-     {
-      user 
-      ?
-      <button className="btn">Signout</button>
-      :
-      <>
-         <NavLink className="btn" to="register">Register</NavLink>
-        <NavLink className="btn" to="login">SignIn</NavLink></>  
-     }
+        {user ? (
+          <button onClick={handleSignOut} className="btn">Signout</button>
+        ) : (
+          <>
+            <NavLink className="btn" to="register">
+              Register
+            </NavLink>
+            <NavLink className="btn" to="login">
+              SignIn
+            </NavLink>
+          </>
+        )}
       </div>
     </div>
   );
