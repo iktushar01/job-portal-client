@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router";
 import ThemeToggle from "./ThemeToggle";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
+
+  const {user} = useContext(AuthContext)
   const links = (
     <>
       <li>
@@ -54,8 +57,15 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <ThemeToggle></ThemeToggle>
-        <NavLink className="btn" to="register">Register</NavLink>
-        <NavLink className="btn" to="login">SignIn</NavLink>
+     {
+      user 
+      ?
+      <button className="btn">Signout</button>
+      :
+      <>
+         <NavLink className="btn" to="register">Register</NavLink>
+        <NavLink className="btn" to="login">SignIn</NavLink></>  
+     }
       </div>
     </div>
   );
