@@ -3,6 +3,7 @@ import RootLayout from "../Layouts/RootLayout";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
+import JobDetails from "../Pages/JobDetails/JobDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,12 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/jobs/:id",
+        element: <JobDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/jobs/${params.id}`),
       },
     ],
   },

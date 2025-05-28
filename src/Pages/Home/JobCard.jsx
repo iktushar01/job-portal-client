@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 const JobCard = ({ job }) => {
   const {
+    _id,
     title,
     location,
     jobType,
@@ -55,7 +56,7 @@ const JobCard = ({ job }) => {
         <div className="pt-2 text-right">
           <Link to={`/jobs/${job._id}`}>
           <button className="btn btn-sm btn-primary hover:scale-105 transition-transform">
-            Apply Now
+            Show Details
           </button>
           </Link>
         </div>
