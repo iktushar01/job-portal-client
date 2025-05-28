@@ -3,12 +3,23 @@ import JobCard from './JobCard';
 
 const HotJobs = ({ jobsPromise }) => {
   const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     jobsPromise
-      .then((data) => setJobs(data))
-      .catch((err) => console.error('Failed to load jobs:', err));
+      .then((data) => {
+        setJobs(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load jobs:', err);
+        setLoading(false);
+      });
   }, [jobsPromise]);
+
+  if (loading) {
+    return <div className="p-4 text-lg font-semibold text-center">Loading hot jobs...</div>;
+  }
 
   return (
     <div className="p-4">
