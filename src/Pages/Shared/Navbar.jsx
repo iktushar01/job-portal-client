@@ -26,6 +26,8 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+
+      {/* for applicant links. check roles as well */}
       {
         user && <>
          <li>
@@ -33,6 +35,12 @@ const Navbar = () => {
       </li>
         </>
       }
+    {/* for recruter. check roles as well */}
+    {
+      user && <>
+      <li><NavLink to='/addjob'>Add Jobs</NavLink></li>
+      </>
+    }
     </>
   );
   return (
