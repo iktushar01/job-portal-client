@@ -1,13 +1,21 @@
 import React from "react";
 
 const AddJob = () => {
+
+    const handleAddAJob = e =>{
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data)
+    }
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
         {" "}
         Add a Job
       </h2>
-      <form className="space-y-4 bg-base-100 p-6 rounded-lg shadow-md">
+      <form onSubmit={handleAddAJob} className="space-y-4 bg-base-100 p-6 rounded-lg shadow-md">
         {/* Title */}
         <div>
           <label className="label">
