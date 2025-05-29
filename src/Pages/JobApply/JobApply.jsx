@@ -18,6 +18,7 @@ const JobApply = () => {
     const gitHub = form.gitHub.value;
     const skill = form.skill.value;
     const letter = form.letter.value;
+      const photoURL = user?.photoURL || "";
 
     const applications = {
       jobId,
@@ -27,6 +28,7 @@ const JobApply = () => {
       gitHub,
       skill,
       letter,
+      photoURL,
     };
 
     axios
