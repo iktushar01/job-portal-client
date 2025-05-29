@@ -1,21 +1,39 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 const AddJob = () => {
+  const { user } = useContext(AuthContext);
 
-    const handleAddAJob = e =>{
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        console.log(data)
-    }
+  const handleAddAJob = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    const { min, max, currency, ...newJob } = data;
+    newJob.salaryRange = {
+      min,
+      max,
+      currency,
+    };
+    const requirementsString = newJob.requirements;
+    const requirementDirty = requirementsString.split(",");
+    const requirementsClean = requirementDirty.map((req) => req.trim());
+    newJob.requirements = requirementsClean;
+   
+
+    newJob.responsibilities = newJob.responsibilities.split(',').map(res => res.trim())
+    console.log(newJob);
+  };
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
         {" "}
         Add a Job
       </h2>
-      <form onSubmit={handleAddAJob} className="space-y-4 bg-base-100 p-6 rounded-lg shadow-md">
+      <form
+        onSubmit={handleAddAJob}
+        className="space-y-4 bg-base-100 p-6 rounded-lg shadow-md"
+      >
         {/* Title */}
         <div>
           <label className="label">
@@ -110,7 +128,7 @@ const AddJob = () => {
             </label>
             <input
               type="number"
-              name="minSalary"
+              name="min"
               className="input input-bordered w-full"
               placeholder="40000"
             />
@@ -121,35 +139,34 @@ const AddJob = () => {
             </label>
             <input
               type="number"
-              name="maxSalary"
+              name="max"
               className="input input-bordered w-full"
               placeholder="60000"
             />
           </div>
           <div className="md:w-24 w-full">
-  <label className="label">
-    <span className="label-text">Currency</span>
-  </label>
-  <select name="currency" className="select select-bordered w-full">
-    <option value="bdt">BDT</option>
-    <option value="usd">USD</option>
-    <option value="eur">EUR</option>
-    <option value="inr">INR</option>
-    <option value="gbp">GBP</option>
-    <option value="cad">CAD</option>
-    <option value="aud">AUD</option>
-    <option value="jpy">JPY</option>
-    <option value="cny">CNY</option>
-    <option value="sar">SAR</option>
-    <option value="aed">AED</option>
-    <option value="myr">MYR</option>
-    <option value="npr">NPR</option>
-    <option value="pkr">PKR</option>
-    <option value="thb">THB</option>
-    <option value="krw">KRW</option>
-  </select>
-</div>
-
+            <label className="label">
+              <span className="label-text">Currency</span>
+            </label>
+            <select name="currency" className="select select-bordered w-full">
+              <option value="bdt">BDT</option>
+              <option value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="inr">INR</option>
+              <option value="gbp">GBP</option>
+              <option value="cad">CAD</option>
+              <option value="aud">AUD</option>
+              <option value="jpy">JPY</option>
+              <option value="cny">CNY</option>
+              <option value="sar">SAR</option>
+              <option value="aed">AED</option>
+              <option value="myr">MYR</option>
+              <option value="npr">NPR</option>
+              <option value="pkr">PKR</option>
+              <option value="thb">THB</option>
+              <option value="krw">KRW</option>
+            </select>
+          </div>
         </div>
 
         {/* Company Name */}
@@ -186,6 +203,7 @@ const AddJob = () => {
               type="email"
               name="hr_email"
               className="input input-bordered w-full"
+              defaultValue={user?.email}
               placeholder="hr@techsolutions.com"
             />
           </div>
