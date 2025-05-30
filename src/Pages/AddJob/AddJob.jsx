@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
 const AddJob = () => {
   const { user } = useContext(AuthContext);
 
@@ -19,10 +21,28 @@ const AddJob = () => {
     const requirementDirty = requirementsString.split(",");
     const requirementsClean = requirementDirty.map((req) => req.trim());
     newJob.requirements = requirementsClean;
-   
 
-    newJob.responsibilities = newJob.responsibilities.split(',').map(res => res.trim())
+    newJob.responsibilities = newJob.responsibilities
+      .split(",")
+      .map((res) => res.trim());
+
+    newJob.status = "active";
     console.log(newJob);
+    //save job to the database
+    axios
+      .post("http://localhost:4000/jobs", newJob)
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Jobs Added Done!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="max-w-4xl mx-auto p-6">
