@@ -1,5 +1,5 @@
-'use client';
-import { useState, useEffect, useRef } from 'react';
+"use client";
+import { useState, useEffect, useRef } from "react";
 export default function SmoothFollower() {
   const mousePosition = useRef({ x: 0, y: 0 });
   const dotPosition = useRef({ x: 0, y: 0 });
@@ -17,13 +17,13 @@ export default function SmoothFollower() {
     };
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
     const interactiveElements = document.querySelectorAll(
-      'a, button, img, input, textarea, select'
+      "a, button, img, input, textarea, select"
     );
     interactiveElements.forEach((element) => {
-      element.addEventListener('mouseenter', handleMouseEnter);
-      element.addEventListener('mouseleave', handleMouseLeave);
+      element.addEventListener("mouseenter", handleMouseEnter);
+      element.addEventListener("mouseleave", handleMouseLeave);
     });
     const animate = () => {
       const lerp = (start, end, factor) => {
@@ -60,37 +60,39 @@ export default function SmoothFollower() {
     };
     const animationId = requestAnimationFrame(animate);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       interactiveElements.forEach((element) => {
-        element.removeEventListener('mouseenter', handleMouseEnter);
-        element.removeEventListener('mouseleave', handleMouseLeave);
+        element.removeEventListener("mouseenter", handleMouseEnter);
+        element.removeEventListener("mouseleave", handleMouseLeave);
       });
       cancelAnimationFrame(animationId);
     };
   }, []);
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
   return (
     <div className="pointer-events-none fixed inset-0 z-50">
+      {/* Inner Dot */}
       <div
-        className="absolute rounded-full dark:bg-white bg-black "
+        className="absolute rounded-full bg-base-content"
         style={{
-          width: '8px',
-          height: '8px',
-          transform: 'translate(-50%, -50%)',
+          width: "8px",
+          height: "8px",
+          transform: "translate(-50%, -50%)",
           left: `${renderPos.dot.x}px`,
           top: `${renderPos.dot.y}px`,
         }}
       />
 
+      {/* Outer Border */}
       <div
-        className="absolute rounded-full border dark:border-white border-black "
+        className="absolute rounded-full border border-base-content"
         style={{
-          width: isHovering ? '44px' : '28px',
-          height: isHovering ? '44px' : '28px',
-          transform: 'translate(-50%, -50%)',
+          width: isHovering ? "44px" : "28px",
+          height: isHovering ? "44px" : "28px",
+          transform: "translate(-50%, -50%)",
           left: `${renderPos.border.x}px`,
           top: `${renderPos.border.y}px`,
-          transition: 'width 0.3s, height 0.3s',
+          transition: "width 0.3s, height 0.3s",
         }}
       />
     </div>
