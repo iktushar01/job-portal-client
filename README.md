@@ -1,12 +1,37 @@
-# React + Vite
+# 💼 Job Portal Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern job portal web application built with React where users can browse, search, and apply for jobs. Includes protected routes, authentication, and dynamic job listings.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Main Technologies Used
 
-## Expanding the ESLint configuration
+- **React JS** – Frontend framework  
+- **React Router DOM** – Client-side routing  
+- **Firebase** – Authentication  
+- **Tailwind CSS** – Utility-first CSS framework  
+- **DaisyUI** – Pre-styled components for Tailwind  
+- **Axios** – HTTP requests
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🌟 Main Features
+
+- User authentication (Google, Email/Password)
+- Protected routes for logged-in users
+- Post, browse, and apply for jobs
+- Responsive design for all devices
+- Role-based dashboard (Admin, Employer, Job Seeker)
+- Dynamic job filtering
+
+---
+
+## 📦 Dependencies
+
+- [React](https://react.dev/)
+- [React Router DOM](https://reactrouter.com/en/main)
+- [Firebase](https://firebase.google.com/docs/web/setup)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [DaisyUI](https://daisyui.com/)
+- [Axios](https://axios-http.com/)
+
+---
